@@ -20,8 +20,17 @@ function play(){const g=game(),c=config(g.level),s=g.selected,r=Math.floor(s/c.n
 function success(){const g=game(),isEndless=data.mode==='endless',stageEnd=!isEndless&&!review&&(data.adventure.cursor+1)%10===0,finished=!isEndless&&!review&&data.adventure.cursor===49,nextLevel=g.level+1;return `<section class="success celebrate"><div class="medal">${symbol(4,'figures')}</div><div class="eyebrow">Все клетки на своих местах</div><h1>Отлично получилось!</h1><p>${isEndless?'Ещё одна головоломка решена. Продолжим?':review?'Знакомое задание — новое удовольствие!':'Ты на шаг ближе к новой вершине.'}</p>${isEndless?`<div class="success-score"><div>За это задание<strong>${g.delta>0?'+':''}${g.delta}</strong></div><div>Общий счёт<strong>${data.score}</strong></div></div>`:''}${stageEnd?`<div class="stage-note">${finished?'Все пять этапов пройдены!':`Этап завершён! Впереди «${config(nextLevel).name}».${config(nextLevel).n!==g.n?` Новое поле ${config(nextLevel).n}×${config(nextLevel).n}, блоки ${config(nextLevel).rows}×${config(nextLevel).cols}.`:''}`}</div>`:''}<button class="primary" data-action="next">Далее →</button><div style="margin-top:16px"><button class="quiet" data-action="home">К выбору игры</button></div></section>`;}
 function complete(){return `<section class="success"><div class="medal">${symbol(4,'figures')}</div><div class="eyebrow">50 головоломок · 5 этапов</div><h1>Приключение пройдено!</h1><p>От первых шагов до мастерства — ты справился.<br>Новые открытия ждут в бесконечной игре.</p><button class="primary" data-action="endless">Бесконечная игра →</button><div class="modal-actions" style="justify-content:center"><button class="secondary" data-action="restart-adventure">Новое приключение</button><button class="secondary" data-action="history">Пройденные задания</button></div></section>`;}
 function render(focus){
+  const checkWasVisible=!!main.querySelector('.check:not([hidden])');
   main.innerHTML=(saveFailed?'<div class="save-warning" role="alert">Не удалось сохранить прогресс в браузере. Освободи место или разреши хранение данных, чтобы продолжить позже.</div>':'')+(loadFailed?'<div class="save-warning" role="alert">Сохранение недоступно или повреждено. Можно начать новую игру.</div>':'')+(busy?'<div class="loading" role="status"><div class="spinner" aria-hidden="true"></div><h2>Собираем головоломку</h2><p>Сейчас всё встанет на свои места…</p></div>':data.page==='home'?home():data.page==='complete'?complete():data.page==='success'?success():play());
   if(focus){const target=main.querySelector(focus);target?.focus({preventScroll:true});}
+  if(!checkWasVisible&&main.querySelector('.check:not([hidden])')&&matchMedia('(max-width:650px)').matches){
+    requestAnimationFrame(()=>{
+      const check=main.querySelector('.check:not([hidden])');if(!check)return;
+      const viewport=window.visualViewport,visibleBottom=(viewport?.offsetTop||0)+(viewport?.height||innerHeight);
+      const overflow=check.getBoundingClientRect().bottom+24-visibleBottom;
+      if(overflow>0)window.scrollBy({top:overflow,behavior:'instant'});
+    });
+  }
 }
 function closeModal(){if(dialog.open)dialog.close();}
 function modal(title,body,desc=''){
