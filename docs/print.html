@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#dce7f2">
+  <title>Судоку для печати — Созвездие судоку</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./fonts/manrope.css"><link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./print.css">
+  <style id="paper-size">@page{size:A4 portrait;margin:0}</style>
+  <script type="module" src="./print.js"></script>
+</head>
+<body>
+  <header class="topbar screen-only"><div class="top-inner"><a class="brand" href="./index.html" aria-label="Созвездие судоку — главная"><img class="brandmark" src="./logo.svg" alt="" width="34" height="34">Созвездие <span>судоку</span></a></div></header>
+  <main class="print-main">
+    <div class="print-heading screen-only"><a class="quiet" href="./index.html">← К выбору игры</a><h1>Судоку для печати</h1><p>Собери свой набор — для дома, занятий или дороги.</p></div>
+    <div class="print-layout">
+      <form id="print-form" class="print-controls screen-only" novalidate>
+        <fieldset id="config-fields">
+          <legend>Настройки набора</legend>
+          <label for="task-count">Количество задач</label><input id="task-count" name="count" type="number" inputmode="numeric" min="1" max="50" step="1" value="6" aria-describedby="count-help count-error"><small id="count-help">От 1 до 50 судоку</small><p id="count-error" class="field-error" aria-live="polite"></p>
+          <label for="grid-size">Сетка судоку</label><select id="grid-size" name="n"><option value="4">4×4 — 16 клеток</option><option value="6">6×6 — 36 клеток</option><option value="9">9×9 — 81 клетка</option></select>
+          <label for="clue-count">Предзаполненные клетки</label><input id="clue-count" name="clues" type="number" inputmode="numeric" min="4" max="15" step="1" value="9" aria-describedby="clues-help clues-error"><small id="clues-help">В каждой задаче: 9 исходных, 7 пустых</small><p id="clues-error" class="field-error" aria-live="polite"></p>
+          <p id="size-notice" class="setting-note" aria-live="polite"></p>
+          <label for="print-symbols">Символы</label><select id="print-symbols" name="symbols"><option value="figures">Фигуры</option><option value="numbers">Числа</option></select>
+          <div id="color-control"><label for="print-color">Печать</label><select id="print-color" name="color"><option value="mono">Чёрно-белая</option><option value="color">Цветная</option></select></div>
+          <p id="numbers-note" class="setting-note" hidden>Для чисел используется чёрно-белая печать.</p>
+          <label for="paper-format">Формат бумаги</label><select id="paper-format" name="paper"><option value="A4">А4 · 210 × 297 мм</option><option value="A5">А5 · 148 × 210 мм</option></select>
+          <label for="board-size">Размер задачи на листе</label>
+          <div class="size-value"><output id="board-size-value" for="board-size">56 × 56 мм</output><button type="button" id="reset-board-size">Обычный</button></div>
+          <input id="board-size" name="boardMM" type="range" min="38" max="186" step="1" value="56" aria-describedby="board-size-help board-size-notice">
+          <small id="board-size-help">Размер поля на бумаге. Предпросмотр обновляется сразу.</small>
+          <p id="board-size-notice" class="setting-note" role="status"></p>
+        </fieldset>
+        <button type="submit" class="primary generate-button" id="generate">Сгенерировать</button>
+        <div id="generation-progress" hidden><progress id="batch-progress" max="6" value="0" aria-label="Готовность набора"></progress><p id="progress-label" role="status">Подготавливаем задачи…</p><button type="button" class="secondary" id="cancel-generation">Отменить</button></div>
+        <p id="generation-error" class="field-error" role="alert"></p>
+      </form>
+      <section class="preview-section" aria-label="Предпросмотр печати">
+        <div class="preview-toolbar screen-only"><div><h2>Предпросмотр</h2><p id="batch-summary">Здесь появятся готовые страницы</p></div><button type="button" class="primary" id="print-button" disabled>Печатать</button></div>
+        <p id="preview-status" class="preview-status screen-only" role="status"></p>
+        <p id="print-help" class="print-help screen-only">Бумага А4 · масштаб 100% · колонтитулы браузера выключены</p>
+        <div id="preview-empty" class="preview-empty screen-only"><span aria-hidden="true">✦</span><h3>Твои судоку на бумаге</h3><p>Выбери параметры и нажми «Сгенерировать».<br>Все клетки останутся белыми — удобно решать карандашом.</p></div>
+        <div id="sheets"></div>
+        <p class="print-notice">Сначала подготовьте полный набор судоку с выбранными параметрами и нажмите «Печатать».</p>
+      </section>
+    </div>
+  </main>
+  <footer class="footer screen-only"><span>Для любопытных любого возраста</span><span>Созвездие судоку</span></footer>
+  <noscript>Для генерации судоку нужно включить JavaScript.</noscript>
+</body>
+</html>

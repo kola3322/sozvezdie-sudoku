@@ -22,10 +22,10 @@ export function candidates(board,index,c){
   return Array.from({length:c.n},(_,i)=>i+1).filter(v=>!used.has(v));
 }
 export function validBoard(board,c){return board.length===c.n*c.n&&board.every(v=>Number.isInteger(v)&&v>=0&&v<=c.n)&&units(c).every(u=>{const v=u.indices.map(i=>board[i]).filter(Boolean);return new Set(v).size===v.length;});}
-export function countSolutions(input,c,limit=2){
+export function countSolutions(input,c,limit=2,check=()=>{}){
   if(!validBoard(input,c))return 0;
   const b=[...input];let count=0;
-  function visit(){if(count>=limit)return;let best=-1,opts=[];
+  function visit(){check();if(count>=limit)return;let best=-1,opts=[];
     for(let i=0;i<b.length;i++)if(!b[i]){const cs=candidates(b,i,c);if(!cs.length)return;if(best<0||cs.length<opts.length){best=i;opts=cs;if(cs.length===1)break;}}
     if(best<0){count++;return;}
     for(const v of opts){b[best]=v;visit();if(count>=limit)break;}b[best]=0;
@@ -43,7 +43,7 @@ export function logicalSolve(input,c){
   return {solved:!board.includes(0)&&validBoard(board,c),steps,board};
 }
 function shuffle(a,rng){for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function complete(c,rng){
+export function complete(c,rng){
   const digits=shuffle(Array.from({length:c.n},(_,i)=>i+1),rng);
   const order=(size)=>shuffle(Array.from({length:c.n/size},(_,i)=>i),rng).flatMap(g=>shuffle(Array.from({length:size},(_,i)=>g*size+i),rng));
   const rr=order(c.rows),cc=order(c.cols);

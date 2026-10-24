@@ -1,0 +1,35 @@
+.brand{text-decoration:none;color:var(--ink)}
+.print-main{max-width:1260px}
+.print-heading{margin-bottom:24px}.print-heading h1{font-size:30px;margin:6px 0 8px}.print-heading p{color:var(--muted);font-size:14px;margin:0}
+.print-layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:26px;align-items:start}
+.print-controls{background:#fafdff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.print-controls fieldset{padding:0;margin:0;border:0;min-width:0}.print-controls legend{font-size:17px;font-weight:800;margin-bottom:18px}
+.print-controls label{display:block;font-size:13px;font-weight:700;margin:16px 0 7px}.print-controls legend+label{margin-top:0}
+.print-controls input,.print-controls select{display:block;width:100%;min-height:44px;padding:10px 12px;font:inherit;font-size:16px;color:var(--ink);background:white;border:1px solid #b9cddd;border-radius:9px}
+.print-controls small{display:block;font-size:12px;line-height:1.5;color:var(--muted);margin-top:6px}.field-error{color:#a83248;font-size:12px;line-height:1.5;margin:6px 0 0}.field-error:empty{display:none}
+.size-value{display:flex;align-items:center;justify-content:space-between;gap:8px}.size-value output{font-size:17px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}.size-value button{min-height:44px;padding:7px 9px;background:transparent;border:1px solid var(--line);border-radius:8px;font-size:12px}.print-controls input[type=range]{padding:0;margin:0;min-height:44px;border:0;background:transparent;accent-color:var(--accent);cursor:pointer}.print-controls input:focus-visible,.print-controls select:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+[aria-invalid=true]{border-color:#b52e44!important}.setting-note{font-size:12px;color:var(--muted);line-height:1.5;margin:10px 0 0}.setting-note:empty{display:none}
+.generate-button{width:100%;margin-top:22px}.print-controls progress{width:100%;margin-top:18px;accent-color:var(--accent)}#progress-label{font-size:13px;margin:8px 0 12px}#cancel-generation{width:100%}
+.preview-section{min-width:0}.preview-toolbar{display:flex;gap:15px;justify-content:space-between;align-items:center;margin-bottom:12px}.preview-toolbar h2{font-size:19px;margin:0 0 5px}.preview-toolbar p{font-size:12px;color:var(--muted);margin:0}.preview-toolbar button{flex:none}
+.preview-status{font-size:13px;line-height:1.5;padding:12px 15px;background:#fff5de;border-radius:10px;color:#715522}.preview-status:empty{display:none}.print-help{font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 18px}
+.preview-empty{background:#f4f8fc;border:1px dashed #a9c3d9;border-radius:18px;min-height:370px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:25px;text-align:center}.preview-empty>span{font-size:46px;color:#b99a42}.preview-empty h3{font-size:20px;margin:15px 0 8px}.preview-empty p{font-size:14px;color:var(--muted);margin:0}
+#sheets{width:100%}.paper-frame{position:relative;margin:0 auto 24px}.paper{width:var(--paper-width);height:var(--paper-height);padding:12mm;background:#fff;color:#000;box-sizing:border-box;transform-origin:top left;box-shadow:0 5px 22px #23435c1a;overflow:hidden;font-family:Manrope,Arial,sans-serif}
+.paper-header{height:14mm;display:flex;align-items:center;gap:2.5mm;margin-bottom:6mm;color:#000}.paper-header img{height:9mm;width:9mm;flex:none}.paper-header strong{font-size:15pt;font-weight:800;letter-spacing:-.4pt;white-space:nowrap}.paper.color .paper-header strong{color:#213b50}.paper.color .paper-header strong span{color:#147dcc}
+.paper-tasks{display:grid;grid-template-columns:repeat(var(--columns),var(--board-mm));grid-auto-rows:var(--card-height);gap:8mm;align-content:start;justify-content:space-between}
+.print-task{width:var(--board-mm);height:var(--card-height);break-inside:avoid;page-break-inside:avoid}.print-task h3{height:8mm;margin:0;font-size:10pt;line-height:8mm;font-weight:700;color:#000}
+.print-grid{width:var(--board-mm);height:var(--board-mm);display:grid;grid-template-columns:repeat(var(--n),1fr);grid-template-rows:repeat(var(--n),1fr);border:.65mm solid #000;background:white;box-sizing:border-box}
+.print-cell{min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;padding:0;border-right:.18mm solid #000;border-bottom:.18mm solid #000;background:white!important;color:#000;font-size:calc(var(--board-mm) / var(--n) * .56);line-height:1;font-weight:600}
+.print-cell.block-r{border-right-width:.65mm}.print-cell.block-b{border-bottom-width:.65mm}.print-cell.edge-r{border-right:0}.print-cell.edge-b{border-bottom:0}
+.print-shape{display:block;width:65%;height:65%;overflow:hidden;flex:none}.print-legend{height:10mm;display:flex;align-items:center;justify-content:center;gap:2mm;padding-top:2mm}.print-legend svg{width:5mm;height:5mm;flex:none}
+.paper.color .print-v1{color:#e15b72}.paper.color .print-v2{color:#2489d3}.paper.color .print-v3{color:#38a06c}.paper.color .print-v4{color:#cf9b19}.paper.color .print-v5{color:#9265c9}.paper.color .print-v6{color:#e67d32}.paper.color .print-v7{color:#23969b}.paper.color .print-v8{color:#c65c9f}.paper.color .print-v9{color:#75634d}
+.page-label{font-size:12px;color:var(--muted);text-align:center;margin:0 0 8px}.print-notice{display:none}
+@media(max-width:850px){.print-layout{grid-template-columns:250px minmax(0,1fr);gap:18px}.print-controls{padding:18px}}
+@media(max-width:650px){.print-layout{grid-template-columns:1fr;gap:24px}.print-heading h1{font-size:25px}.preview-toolbar{align-items:center}.preview-toolbar .primary{padding:12px 16px}.print-controls{padding:20px}.print-main{padding-inline:14px}.preview-empty{min-height:260px}}
+@media print{
+  @page{margin:0}
+  html,body{margin:0!important;padding:0!important;min-width:0!important;min-height:0!important;background:white!important;color:#000!important}
+  .screen-only,noscript{display:none!important}.print-main,.print-layout,.preview-section,#sheets{display:block!important;width:auto!important;max-width:none!important;margin:0!important;padding:0!important;min-height:0!important}
+  .paper-frame{width:var(--paper-width)!important;height:var(--paper-height)!important;margin:0!important;padding:0!important;break-after:page;page-break-after:always}.paper-frame:last-child{break-after:auto;page-break-after:auto}
+  .paper{transform:none!important;box-shadow:none!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  body:not(.print-ready) #sheets{display:none!important}body:not(.print-ready) .print-notice{display:block;margin:12mm;color:#000;font-size:14pt}
+}
